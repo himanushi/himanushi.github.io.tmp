@@ -3,5 +3,5 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import convertMarkdownToHtml from './plugins/convertMarkdownToHtml';
 
 export default defineConfig({
-  plugins: [convertMarkdownToHtml(), tsconfigPaths()],
+  plugins: [tsconfigPaths(), convertMarkdownToHtml()],
 });
