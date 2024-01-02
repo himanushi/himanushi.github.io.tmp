@@ -10,6 +10,7 @@
     "update": "ncu -u"
   },
   "devDependencies": {
+    "marked": "^11.1.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.10"
   },
