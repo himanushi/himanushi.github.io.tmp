@@ -23,15 +23,17 @@ export default function convertMarkdownToHtml() {
         const files = fs.readdirSync(blogDirectory);
 
 
-        files.forEach(file => {
+        files.forEach(async file => {
           if (path.extname(file) === '.md') {
             const mdFilePath = path.join(blogDirectory, file);
             const htmlFilePath = path.join(outputDirectory, file.replace('.md', '.html'));
-
             const mdContent = fs.readFileSync(mdFilePath, 'utf-8');
-            const htmlContent = marked(mdContent);
-
-            fs.writeFileSync(htmlFilePath, htmlContent);
+            try {
+              const htmlContent = await marked(mdContent);
+              fs.writeFileSync(htmlFilePath, htmlContent);
+            } catch (err) {
+              console.error('Error in marked:', err);
+            }
           }
         });
       } catch (error) {
