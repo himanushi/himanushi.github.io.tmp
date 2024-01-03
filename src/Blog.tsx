@@ -22,5 +22,6 @@ export const Blog: FunctionComponent<BlogProps> = ({ matches }) => {
       .catch((error) => console.error("Error loading blog post:", error));
   }, [matches.id]);
 
-  return h("div", { dangerouslySetInnerHTML: { __html: content } });
+  // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+  return <div dangerouslySetInnerHTML={{ __html: content }} />;
 };
