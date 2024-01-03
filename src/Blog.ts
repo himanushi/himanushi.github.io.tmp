@@ -1,5 +1,6 @@
 import { marked } from "marked";
-import { Component, h } from "preact";
+import { FunctionComponent, h } from "preact";
+import { useEffect, useState } from "preact/hooks";
 
 interface BlogProps {
   matches: {
@@ -7,30 +8,19 @@ interface BlogProps {
   };
 }
 
-interface BlogState {
-  content: string;
-}
+export const Blog: FunctionComponent<BlogProps> = ({ matches }) => {
+  const [content, setContent] = useState("");
 
-export class Blog extends Component<BlogProps, BlogState> {
-  constructor(props: BlogProps) {
-    super(props);
-    this.state = { content: "" };
-  }
-
-  componentDidMount() {
-    const postId = this.props.matches.id;
+  useEffect(() => {
+    const postId = matches.id;
     fetch(`/blog/${postId}.md`)
       .then((response) => response.text())
       .then(async (text) => {
         const content = await marked(text);
-        this.setState({ content });
+        setContent(content);
       })
       .catch((error) => console.error("Error loading blog post:", error));
-  }
+  }, [matches.id]);
 
-  render() {
-    return h("div", {
-      dangerouslySetInnerHTML: { __html: this.state.content },
-    });
-  }
-}
+  return h("div", { dangerouslySetInnerHTML: { __html: content } });
+};
