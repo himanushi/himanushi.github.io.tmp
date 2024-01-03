@@ -17,7 +17,7 @@ export const Home = () => {
 
   return h(
     "div",
-    null,
+    { class: "underline" },
     h("h1", null, "Himanushi 雑記"),
     h("ul", null, blogPosts),
   );
