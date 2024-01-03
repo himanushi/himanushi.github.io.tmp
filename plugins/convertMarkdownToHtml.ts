@@ -19,23 +19,27 @@ export default function convertMarkdownToHtml() {
           fs.mkdirSync(outputDirectory, { recursive: true });
         }
 
-        const files = fs.readdirSync(blogDirectory);
-        const blogList: string[] = [];
+        const files = fs.readdirSync(blogDirectory).filter(file => path.extname(file) === '.md');
+        const blogList = [];
 
-        for (const file of files) {
-          if (path.extname(file) === '.md') {
-            const mdFilePath = path.join(blogDirectory, file);
-            const htmlFilePath = path.join(outputDirectory, file.replace('.md', '.html'));
-            const mdContent = fs.readFileSync(mdFilePath, 'utf-8');
-            try {
-              const htmlContent = await marked(mdContent);
-              fs.writeFileSync(htmlFilePath, htmlContent);
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const mdFilePath = path.join(blogDirectory, file);
+          const htmlFilePath = path.join(outputDirectory, file.replace('.md', '.html'));
+          const mdContent = fs.readFileSync(mdFilePath, 'utf-8');
+          try {
+            let htmlContent = await marked(mdContent);
 
-              // Add the filename (without extension) to the blog list
-              blogList.push(file.replace('.md', ''));
-            } catch (err) {
-              console.error('Error in marked:', err);
-            }
+            // Add previous and next buttons
+            const prevLink = i > 0 ? `<a href="blog/${files[i - 1].replace('.md', '.html')}">Previous</a>` : '';
+            const nextLink = i < files.length - 1 ? `<a href="blog/${files[i + 1].replace('.md', '.html')}">Next</a>` : '';
+            htmlContent += `<div>${prevLink} ${nextLink}</div>`;
+
+            fs.writeFileSync(htmlFilePath, htmlContent);
+
+            blogList.push(file.replace('.md', ''));
+          } catch (err) {
+            console.error('Error in marked:', err);
           }
         }
 
