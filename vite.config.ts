@@ -14,12 +14,12 @@ export default defineConfig({
         {
           name: "preact",
           var: "preact",
-          path: "https://cdn.jsdelivr.net/npm/preact@10.19.3/dist/preact.min.js",
+          path: "https://cdnjs.cloudflare.com/ajax/libs/preact/10.19.3/preact.umd.min.js",
         },
         // {
         //   name: "preact-router",
         //   var: "preact-router",
-        //   path: "https://cdn.jsdelivr.net/npm/preact-router@4.1.0/dist/preact-router.min.js",
+        //   path: "https://cdnjs.cloudflare.com/ajax/libs/preact-router/4.1.2/preact-router.umd.min.js",
         // },
         {
           name: "marked",
