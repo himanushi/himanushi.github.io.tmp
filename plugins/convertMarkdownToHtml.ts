@@ -33,7 +33,7 @@ export default function convertMarkdownToHtml() {
             // Add previous and next buttons
             const prevLink = i > 0 ? `<a href="${files[i - 1].replace('.md', '.html')}">Previous</a>` : '';
             const nextLink = i < files.length - 1 ? `<a href="${files[i + 1].replace('.md', '.html')}">Next</a>` : '';
-            htmlContent += `<div>${prevLink} ${nextLink}</div>`;
+            htmlContent = `<div>${prevLink} ${nextLink}</div>` + htmlContent;
 
             fs.writeFileSync(htmlFilePath, htmlContent);
 
