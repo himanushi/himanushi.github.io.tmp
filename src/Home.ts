@@ -5,7 +5,7 @@ export const Home = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    fetch("/blog/blogList.txt")
+    fetch(`/blog/blogList.txt?time=${Date.now()}`)
       .then((response) => response.text())
       .then((text) => setContent(text))
       .catch((error) => console.error("Error loading blog post:", error));
