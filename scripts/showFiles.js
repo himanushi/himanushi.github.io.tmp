@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import clipboardy from "clipboardy";
 
 const excludeFiles = [
   "node_modules",
@@ -15,10 +16,10 @@ const excludeFiles = [
   "favicon.ico",
   ".gitignore",
   "tsconfig.json",
-  "package.json",
 ];
 
 function displayDirectoryContents(dir, depth = 0) {
+  let output = "";
   const files = fs.readdirSync(dir);
 
   for (const file of files) {
@@ -28,13 +29,18 @@ function displayDirectoryContents(dir, depth = 0) {
     const stat = fs.statSync(filePath);
 
     if (stat.isDirectory()) {
-      console.log(`${" ".repeat(depth * 2)}Dir: ${file}`);
-      displayDirectoryContents(filePath, depth + 1);
+      output += `${" ".repeat(depth * 2)}Dir: ${file}\n`;
+      output += displayDirectoryContents(filePath, depth + 1);
     } else {
-      console.log(`${" ".repeat(depth * 2)}File: ${file}`);
-      console.log(fs.readFileSync(filePath, "utf8"));
+      output += `${" ".repeat(depth * 2)}File: ${file}\n${fs.readFileSync(
+        filePath,
+        "utf8",
+      )}\n`;
     }
   }
+
+  return output;
 }
 
-displayDirectoryContents(process.cwd());
+const directoryContents = displayDirectoryContents(process.cwd());
+clipboardy.writeSync(directoryContents);
