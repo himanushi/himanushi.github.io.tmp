@@ -19,7 +19,7 @@ export class Blog extends Component<BlogProps, BlogState> {
 
   componentDidMount() {
     const postId = this.props.matches.id;
-    fetch(`/public/blog/${postId}.md`)
+    fetch(`/blog/${postId}.md`)
       .then((response) => response.text())
       .then(async (text) => {
         const content = await marked(text);
