@@ -19,7 +19,8 @@ const excludeFiles = [
 ];
 
 function displayDirectoryContents(dir, depth = 0) {
-  let output = "";
+  let output =
+    "これは Github Pages に Vite を使用して自作で作成したブログです。\n\n";
   const files = fs.readdirSync(dir);
 
   for (const file of files) {
