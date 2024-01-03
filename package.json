@@ -9,6 +9,7 @@
     "update": "ncu -u"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.4.1",
     "@types/node": "^20.10.6",
     "marked": "^11.1.1",
     "npm-check-updates": "^16.14.12",
