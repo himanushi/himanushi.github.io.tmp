@@ -23,4 +23,4 @@ function App() {
 }
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
-render(h(App), document.getElementById("app")!);
+render(h(App, null), document.getElementById("app")!);
