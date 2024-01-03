@@ -1,3 +1,6 @@
+const description =
+  "これは Github Pages に自作デプロイを作成したプロジェクトです";
+
 import fs from "fs";
 import path from "path";
 import clipboardy from "clipboardy";
@@ -69,6 +72,6 @@ function tree(dir, indent = 0) {
 
 const treeOutput = tree(process.cwd());
 const contents = directoryContents(process.cwd());
-const combinedOutput = `${treeOutput}\n\n${contents}`;
+const combinedOutput = `${description}\n\n${treeOutput}\n\n${contents}`;
 
 clipboardy.writeSync(combinedOutput);
