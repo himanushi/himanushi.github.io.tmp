@@ -1,24 +1,14 @@
 import { h, render } from "preact";
 import Router from "preact-router";
-
-function Home() {
-  return h("h1", null, "Home Page");
-}
-
-interface Matches {
-  id: string;
-}
-
-function BlogPost({ matches }: { matches: Matches }) {
-  return h("h1", null, `Blog Post: ${matches.id}`);
-}
+import { Blog } from "./Blog";
+import { Home } from "./Home";
 
 function App() {
   return h(
     Router,
     null,
     h(Home, { path: "/" }),
-    h(BlogPost, { path: "/#/blog/:id", matches: { id: "default" } }),
+    h(Blog, { path: "/blog/:id", matches: { id: "default" } }),
   );
 }
 
