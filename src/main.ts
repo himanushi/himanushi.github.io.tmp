@@ -1,12 +1,8 @@
-import "./style.css";
+import { h, render } from "preact";
 
 (() => {
-  const html = document.querySelector<HTMLDivElement>("#app");
-
+  const html = document.getElementById("app");
   if (!html) return;
-
-  html.innerHTML = `
-  <div>
-    <h1>Himanushi 雑記</h1>
-  </div>`;
+  const App = h("h1", null, "Hello World");
+  render(App, html);
 })();
