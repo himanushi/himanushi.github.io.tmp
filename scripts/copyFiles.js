@@ -1,5 +1,5 @@
 const description =
-  "これは Github Pages に自作デプロイを作成したプロジェクトです。tsxは使用せず、tsで実装します。";
+  "これは Github Pages に自作デプロイを作成したプロジェクトです。";
 
 import fs from "fs";
 import path from "path";

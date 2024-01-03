@@ -18,7 +18,7 @@ export const Home = () => {
   ));
 
   return (
-    <div class="underline">
+    <div>
       <h1>Himanushi 雑記</h1>
       <ul>{blogPosts}</ul>
     </div>
