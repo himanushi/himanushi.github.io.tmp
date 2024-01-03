@@ -31,8 +31,8 @@ export default function convertMarkdownToHtml() {
             let htmlContent = await marked(mdContent);
 
             // Add previous and next buttons
-            const prevLink = i > 0 ? `<a href="blog/${files[i - 1].replace('.md', '.html')}">Previous</a>` : '';
-            const nextLink = i < files.length - 1 ? `<a href="blog/${files[i + 1].replace('.md', '.html')}">Next</a>` : '';
+            const prevLink = i > 0 ? `<a href="${files[i - 1].replace('.md', '.html')}">Previous</a>` : '';
+            const nextLink = i < files.length - 1 ? `<a href="${files[i + 1].replace('.md', '.html')}">Next</a>` : '';
             htmlContent += `<div>${prevLink} ${nextLink}</div>`;
 
             fs.writeFileSync(htmlFilePath, htmlContent);
