@@ -9,5 +9,8 @@ export default defineConfig({
     rollupOptions: {
       external: ["preact", "preact-router", "marked"],
     },
+    commonjsOptions: {
+      esmExternals: ["preact"],
+    },
   },
 });
