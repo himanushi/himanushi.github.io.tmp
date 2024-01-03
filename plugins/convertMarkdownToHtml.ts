@@ -20,7 +20,7 @@ export default function convertMarkdownToHtml() {
         }
 
         const files = fs.readdirSync(blogDirectory).filter(file => path.extname(file) === '.md');
-        const blogList = [];
+        const blogList: string[] = [];
 
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
