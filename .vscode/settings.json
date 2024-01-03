@@ -4,6 +4,10 @@
       {
         "match": ".*$",
         "cmd": "npx @biomejs/biome check --apply ${file}"
+      },
+      {
+        "match": "\\.html$|\\.md$",
+        "cmd": "npx prettier --write ${file}"
       }
     ]
   },
