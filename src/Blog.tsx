@@ -1,5 +1,5 @@
 import { marked } from "marked";
-import { FunctionComponent, h } from "preact";
+import { FunctionComponent } from "preact";
 import { useEffect, useState } from "preact/hooks";
 
 interface BlogProps {
