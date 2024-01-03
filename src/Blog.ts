@@ -1,9 +1,36 @@
-import { h } from "preact";
+import { marked } from "marked";
+import { Component, h } from "preact";
 
-interface Matches {
-  id: string;
+interface BlogProps {
+  matches: {
+    id: string;
+  };
 }
 
-export function Blog({ matches }: { matches: Matches }) {
-  return h("h1", null, `Blog Post: ${matches.id}`);
+interface BlogState {
+  content: string;
+}
+
+export class Blog extends Component<BlogProps, BlogState> {
+  constructor(props: BlogProps) {
+    super(props);
+    this.state = { content: "" };
+  }
+
+  componentDidMount() {
+    const postId = this.props.matches.id;
+    fetch(`/public/blog/${postId}.md`)
+      .then((response) => response.text())
+      .then(async (text) => {
+        const content = await marked(text);
+        this.setState({ content });
+      })
+      .catch((error) => console.error("Error loading blog post:", error));
+  }
+
+  render() {
+    return h("div", {
+      dangerouslySetInnerHTML: { __html: this.state.content },
+    });
+  }
 }
