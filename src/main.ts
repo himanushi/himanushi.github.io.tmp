@@ -18,7 +18,7 @@ function App() {
     Router,
     null,
     h(Home, { path: "/" }),
-    h(BlogPost, { path: "/blog/:id", matches: { id: "default" } }),
+    h(BlogPost, { path: "/#/blog/:id", matches: { id: "default" } }),
   );
 }
 
