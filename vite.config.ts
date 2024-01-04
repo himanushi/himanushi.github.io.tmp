@@ -8,7 +8,7 @@ import copy404ToIndex from "./scripts/copy404ToIndex";
 export default defineConfig({
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "src"), // 'src' ディレクトリを指す
+      "~": path.resolve(__dirname, "src"),
     },
   },
   plugins: [
